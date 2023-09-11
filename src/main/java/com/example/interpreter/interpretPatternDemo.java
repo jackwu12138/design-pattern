@@ -11,7 +11,6 @@ public class interpretPatternDemo {
         return new OrExpression(robert, john);
     }
 
-    // 规则：Julie 是一个已婚的女性
     public static Expression getMarriedWomanExpression() {
         Expression julie = new TerminalExpression("Julie");
         Expression married = new TerminalExpression("Married");
