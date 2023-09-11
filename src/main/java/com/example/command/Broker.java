@@ -1,0 +1,36 @@
+package com.example.command;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author jackwu
+ */
+public class Broker {
+
+    private final List<Order> orderList = new ArrayList<>();
+
+    public void takeOrder(Order order) {
+        orderList.add(order);
+    }
+
+    public void placeOrders() {
+        for (Order order : orderList) {
+            order.execute();
+        }
+        orderList.clear();
+    }
+
+    public static void main(String[] args) {
+        var broker = new Broker();
+
+        var stock = new Stock();
+        var buyStock = new BuyStock(stock);
+        var sellStock = new SellStock(stock);
+
+        broker.takeOrder(buyStock);
+        broker.takeOrder(sellStock);
+
+        broker.placeOrders();
+    }
+}
